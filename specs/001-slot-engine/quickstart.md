@@ -117,7 +117,7 @@ assets/classic/
     <div id="controls" style="display: none;">
       <div id="credits-display">Credits: <span id="credits">1000</span></div>
       <div id="win-display">Last Win: <span id="last-win">0</span></div>
-      <button id="spin-button">SPIN</button>
+      <button id="spin-button"></button>
     </div>
   </div>
 

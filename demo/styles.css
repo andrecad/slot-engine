@@ -183,29 +183,20 @@ body {
   color: white;
   font-size: 24px;
   font-weight: bold;
-  padding: 15px 40px;
+  padding: 45px;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
   text-transform: uppercase;
   letter-spacing: 2px;
+  background-image: url("http://localhost:3000/output/button/generated.png");
+  background-size: cover;       /* Scale image to cover the div */
+  background-position: center;  /* Center the image */
+  background-repeat: no-repeat; 
 }
 
-.spin-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
-}
 
-.spin-button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.spin-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: #95a5a6;
-}
 
 /* Win animations */
 .symbol.pulse {

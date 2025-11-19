@@ -75,7 +75,7 @@ export class DOMRenderer {
     // Create spin button
     this.spinButton = document.createElement('button');
     this.spinButton.className = 'spin-button';
-    this.spinButton.textContent = 'SPIN';
+    this.spinButton.textContent = '';
     controls.appendChild(this.spinButton);
 
     // Create last win display

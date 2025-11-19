@@ -7,11 +7,11 @@ const engine = new SlotEngine({
     'CHERRY': 'icon_0_0.png',
     'LEMON': 'icon_0_1.png',
     'ORANGE': 'icon_0_2.png',
-    'WATERMELON': 'icon_0_3.png',
+    'WATERMELON': 'icon_1_7.png',
     'BELL': 'icon_1_0.png',
     'BAR': 'icon_1_1.png',
     'DIAMOND': 'icon_1_2.png',
-    'SEVEN': 'icon_1_3.png'
+    'SEVEN': 'icon_1_7.png'
   },
   initialCredits: 1000,
   betAmount: 10,
