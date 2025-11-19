@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Symbol Images</title>
+</head>
+<body>
+  <h1>Symbol Image Generator</h1>
+  <p>Right-click each image below and "Save As" to demo/assets/classic/</p>
+  <div id="symbols"></div>
+  
+  <script>
+    const symbols = {
+      'CHERRY': { emoji: '🍒', color: '#e74c3c' },
+      'LEMON': { emoji: '🍋', color: '#f1c40f' },
+      'ORANGE': { emoji: '🍊', color: '#e67e22' },
+      'WATERMELON': { emoji: '🍉', color: '#2ecc71' },
+      'BELL': { emoji: '🔔', color: '#f39c12' },
+      'BAR': { emoji: '▬', color: '#34495e' },
+      'DIAMOND': { emoji: '💎', color: '#3498db' },
+      'SEVEN': { emoji: '7️⃣', color: '#9b59b6' }
+    };
+
+    const container = document.getElementById('symbols');
+
+    for (const [name, { emoji, color }] of Object.entries(symbols)) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 150;
+      canvas.height = 150;
+      
+      const ctx = canvas.getContext('2d');
+      
+      // Background
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, 150, 150);
+      
+      // Emoji/Symbol
+      ctx.font = '80px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(emoji, 75, 75);
+      
+      // Add to page
+      const wrapper = document.createElement('div');
+      wrapper.style.display = 'inline-block';
+      wrapper.style.margin = '10px';
+      wrapper.style.textAlign = 'center';
+      
+      const label = document.createElement('div');
+      label.textContent = `symbol-${name}.png`;
+      label.style.marginBottom = '5px';
+      
+      wrapper.appendChild(label);
+      wrapper.appendChild(canvas);
+      container.appendChild(wrapper);
+    }
+  </script>
+</body>
+</html>

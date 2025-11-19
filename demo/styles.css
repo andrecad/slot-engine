@@ -1,0 +1,327 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.demo-header {
+  text-align: center;
+  color: white;
+  width: 100%;
+  max-width: 800px;
+}
+
+.demo-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slot-machine {
+  background: #2c3e50;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  max-width: 800px;
+}
+
+.reel-container {
+  display: flex;
+  gap: 10px;
+  background: #1a252f;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: 320px;
+}
+
+.reel {
+  flex: 1;
+  background: #34495e;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  height: 300px;
+}
+
+.symbol-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: transform 0.05s linear;
+}
+
+.symbol {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: #ecf0f1;
+  border-bottom: 1px solid #2c3e50;
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+}
+
+.symbol img {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.symbol.winning {
+  animation: pulse 0.5s ease-in-out infinite alternate;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  box-shadow: 0 0 20px rgba(245, 87, 108, 0.6);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.credits-display,
+.last-win-display {
+  background: #1a252f;
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: #ecf0f1;
+  font-size: 18px;
+  font-weight: bold;
+  flex: 1;
+  text-align: center;
+  min-width: 150px;
+}
+
+.bet-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1a252f;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.bet-display {
+  color: #ecf0f1;
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 80px;
+  text-align: center;
+}
+
+.bet-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bet-button:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+}
+
+.bet-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.bet-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #95a5a6;
+}
+
+.last-win-display.win-highlight {
+  animation: winFlash 0.5s ease-in-out;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+@keyframes winFlash {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.spin-button {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.spin-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+}
+
+.spin-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.spin-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #95a5a6;
+}
+
+/* Win animations */
+.symbol.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.slot-machine.win-animation {
+  animation: winShake 0.5s ease-in-out;
+}
+
+.slot-machine.big-win-animation {
+  animation: bigWinShake 1s ease-in-out, glowEffect 2s ease-in-out;
+}
+
+@keyframes winShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes bigWinShake {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.02) rotate(-1deg); }
+  50% { transform: scale(1.04) rotate(1deg); }
+  75% { transform: scale(1.02) rotate(-1deg); }
+}
+
+@keyframes glowEffect {
+  0%, 100% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 20px 80px rgba(245, 87, 108, 0.8),
+                0 0 40px rgba(240, 147, 251, 0.6);
+  }
+}
+
+/* Loading indicator */
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #f093fb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-progress {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.progress-value {
+  color: #f093fb;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .symbol-track {
+    transition: none;
+  }
+  
+  .symbol.winning,
+  .symbol.pulse {
+    animation: none;
+  }
+  
+  .last-win-display.win-highlight {
+    animation: none;
+  }
+  
+  .spin-button:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .slot-machine.win-animation,
+  .slot-machine.big-win-animation {
+    animation: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
+    border-top-color: #f093fb;
+  }
+}
