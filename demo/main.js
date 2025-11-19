@@ -2,16 +2,16 @@ import { SlotEngine } from '../dist/SlotEngine.js';
 
 // Initialize the slot machine
 const engine = new SlotEngine({
-  assetsPath: 'assets/classic',
+  assetsPath: 'http://localhost:3000/output/icons',
   symbolSet: {
-    'CHERRY': 'symbol-CHERRY.png',
-    'LEMON': 'symbol-LEMON.png',
-    'ORANGE': 'symbol-ORANGE.png',
-    'WATERMELON': 'symbol-WATERMELON.png',
-    'BELL': 'symbol-BELL.png',
-    'BAR': 'symbol-BAR.png',
-    'DIAMOND': 'symbol-DIAMOND.png',
-    'SEVEN': 'symbol-SEVEN.png'
+    'CHERRY': 'icon_0_0.png',
+    'LEMON': 'icon_0_1.png',
+    'ORANGE': 'icon_0_2.png',
+    'WATERMELON': 'icon_0_3.png',
+    'BELL': 'icon_1_0.png',
+    'BAR': 'icon_1_1.png',
+    'DIAMOND': 'icon_1_2.png',
+    'SEVEN': 'icon_1_3.png'
   },
   initialCredits: 1000,
   betAmount: 10,
