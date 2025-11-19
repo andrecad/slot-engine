@@ -28,7 +28,18 @@ const engine = new SlotEngine({
 engine.ready().then(() => {
   console.log('Slot engine ready!');
   console.log('Initial state:', engine.getState());
+  
+  // Send initial balance to parent window
+  const state = engine.getState();
+  window.top.postMessage({
+    type: 'SLOT_BALANCE_UPDATE',
+    balance: state.credits
+  }, '*');
 });
+
+// Track net win/loss (positive = won, negative = lost)
+let sessionNetValue = 0;
+let lastSpinNetValue = 0;
 
 // Listen to events
 engine.on('spin-start', (data) => {
@@ -41,6 +52,14 @@ engine.on('reel-stop', (data) => {
 
 engine.on('spin-complete', (data) => {
   console.log('Spin complete:', data.result);
+  
+  // Send spin result to parent window after animation completes
+  // Use the value that was captured in credits-changed event
+  window.top.postMessage({
+    type: 'SLOT_SPIN_RESULT',
+    spinNetValue: lastSpinNetValue,
+    sessionNetValue: sessionNetValue
+  }, '*');
 });
 
 engine.on('win', (data) => {
@@ -49,6 +68,16 @@ engine.on('win', (data) => {
 
 engine.on('credits-changed', (data) => {
   console.log('Credits:', data.oldBalance, '->', data.newBalance);
+  
+  // Capture the actual change (this is the real net value)
+  lastSpinNetValue = data.change;
+  sessionNetValue += data.change;
+  
+  // Send updated balance to parent window
+  window.top.postMessage({
+    type: 'SLOT_BALANCE_UPDATE',
+    balance: data.newBalance
+  }, '*');
 });
 
 // Expose engine to window for manual testing
